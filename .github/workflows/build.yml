@@ -1,0 +1,23 @@
+name: Build Vial Firmware
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Build Firmware
+        run: |
+          make doio/kb16/rev2:vial
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: doio_kb16_rev2_vial
+          path: .build/doio_kb16_rev2_vial.bin
