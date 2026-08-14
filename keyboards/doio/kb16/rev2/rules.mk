@@ -3,3 +3,6 @@ SRC += ./lib/logo.c
 
 # Configure for 128K flash
 MCU_LDSCRIPT = STM32F103xB
+
+# WS2812の制御をハードウェアPWMに変更（APM32/STM32用）
+WS2812_DRIVER = pwm
